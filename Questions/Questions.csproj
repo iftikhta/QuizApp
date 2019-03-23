@@ -119,6 +119,15 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Application\Questions\OptionsQuestion.cs" />
+    <Compile Include="Application\Questions\Question.cs" />
+    <Compile Include="Application\Questions\TextQuestion.cs" />
+    <Compile Include="Application\Questions\SimpleQuestion.cs" />
+    <Compile Include="Application\Quizes\Quiz.cs" />
+    <Compile Include="Application\Quizes\QuizBuilder.cs" />
+    <Compile Include="Application\Quizes\QuizController.cs" />
+    <Compile Include="Application\Quizes\QuizLoader.cs" />
+    <Compile Include="Data\StaticLoader.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -155,6 +164,7 @@
       <Version>6.2.3</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
