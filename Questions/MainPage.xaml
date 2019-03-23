@@ -5,10 +5,58 @@
     xmlns:local="using:Questions"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:quizes="using:Questions.Application.Quizes"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-
+    <Grid Background="#FF78E8EE">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <ListView x:Name="QuizList" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#FFBAFFFF" SelectionChanged="Selected">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Padding" Value="0"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10,15,10,15" BorderBrush="#07b4b4" BorderThickness="1">
+                        <Grid.Background>
+                            <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                <GradientStop Color="#FF08D5D5" Offset="0"/>
+                                <GradientStop Color="#FF06E8E8" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" FontSize="30" Foreground="#FFF" Text="{Binding Name}"></TextBlock>
+                        <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontSize="20"  Foreground="#FFF" Margin="0,0,5,0">Questions:</TextBlock>
+                            <TextBlock FontSize="20"  Foreground="#FFF" Text="{Binding Count}"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBlock FontSize="20"  Foreground="#FFF" Margin="0,0,5,0">Total Points:</TextBlock>
+                            <TextBlock FontSize="20"  Foreground="#FFF" Text="{Binding Points}"></TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Padding="20" HorizontalAlignment="Right">
+            <Button Background="#FFFFFF" Padding="10,15,10,15" FontSize="20" Width="200" Click="Add_New">Add New Quiz</Button>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Padding="20" HorizontalAlignment="Left">
+            <Button Background="#FFFFFF" Padding="10,15,10,15" FontSize="20" Width="200" Click="Exit">Exit</Button>
+        </StackPanel>
     </Grid>
 </Page>

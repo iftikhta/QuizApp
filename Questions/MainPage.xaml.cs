@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -12,19 +13,36 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Questions.Application.Quizes;
+using Questions.Data;
 
 namespace Questions
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+        private readonly QuizController _controller = new QuizController(new StaticLoader());
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            _controller.Load();
+            QuizList.ItemsSource = _controller.Quizes;
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Exit");
+        }
+
+        private void Add_New(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine("Added");
+        }
+
+        private void Selected(object sender, SelectionChangedEventArgs e)
+        {
+            Debug.WriteLine(QuizList.SelectedIndex);
         }
     }
 }
