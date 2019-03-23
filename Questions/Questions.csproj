@@ -123,6 +123,7 @@
     <Compile Include="Application\Questions\Question.cs" />
     <Compile Include="Application\Questions\TextQuestion.cs" />
     <Compile Include="Application\Questions\SimpleQuestion.cs" />
+    <Compile Include="Application\Questions\TrueFalseQuestion.cs" />
     <Compile Include="Application\Quizes\Quiz.cs" />
     <Compile Include="Application\Quizes\QuizBuilder.cs" />
     <Compile Include="Application\Quizes\QuizController.cs" />

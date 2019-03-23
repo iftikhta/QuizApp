@@ -7,7 +7,7 @@ namespace Questions.Application.Quizes
     public class QuizBuilder
     {
         private string _name;
-        private List<Question> _questions;
+        private readonly List<Question> _questions;
 
         public static QuizBuilder create(string name)
         {
@@ -26,9 +26,9 @@ namespace Questions.Application.Quizes
             return this;
         }
 
-        public QuizBuilder AddQuestion<T>(string text, int points, T answer)
+        public QuizBuilder AddTrueFalseQuestion(string text, int points, bool answer)
         {
-            _questions.Add(new SimpleQuestion<T>(answer, text, points));
+            _questions.Add(new TrueFalseQuestion(answer, text, points));
             return this;
         }
 

@@ -1,10 +1,10 @@
 ﻿namespace Questions.Application.Questions
 {
-    public class SimpleQuestion<T> : Question
+    public abstract class SimpleQuestion<T> : Question
     {
         private readonly T _answer;
 
-        public SimpleQuestion(T answer, string text, int points) 
+        protected SimpleQuestion(T answer, string text, int points) 
             : base(text, points)
         {
             _answer = answer;
