@@ -1,0 +1,40 @@
+﻿<Page
+    x:Class="Questions.QuizViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Questions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF217095" Offset="1"/>
+                <GradientStop Color="#FF5DA497" Offset="0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TextBlock  FontSize="65" TextAlignment="Center" HorizontalAlignment="Center"  Text="Quiz View" TextWrapping="Wrap" VerticalAlignment="Top" Height="161" Width="1478" FontFamily="Comic Sans MS" TextDecorations="Underline"/>
+        <StackPanel Orientation="Horizontal" Margin="406,190,416,500" Padding="50,50,50,50" Background="Red">
+
+            <StackPanel HorizontalAlignment="Left"   VerticalAlignment="Top" Background="Blue">
+                <TextBlock Foreground="White" FontSize="50" HorizontalAlignment="Left" Text="Quiz Name:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+                <TextBlock Foreground="White" FontSize="50" HorizontalAlignment="Left" Text="Questions:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" />
+                <TextBlock Foreground="White" FontSize="50" HorizontalAlignment="Left" Text="Total Points:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Right"  VerticalAlignment="Top" Background="Blue">
+                <TextBlock  x:Name="QuizNameText" Foreground="White" FontSize="50" HorizontalAlignment="Right" Text="{}{Quiz Name}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+                <TextBlock x:Name="QuizTotalQuestions" Foreground="White" FontSize="50" HorizontalAlignment="Right" Text="{}{#ofQs}:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" />
+                <TextBlock x:Name="QuizTotalPoints" Foreground="White" FontSize="50" HorizontalAlignment="Right" Text="{}{#ofPoints}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+            </StackPanel>
+
+        </StackPanel>
+
+
+        <local:NavigationBarQuizView Margin="10,883,10,17" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+    </Grid>
+</Page>
