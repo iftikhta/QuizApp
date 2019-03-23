@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Questions.QuestionCreationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Questions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Background="#FFFAFAFA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <TextBlock FontSize="30" Margin="0,0,5,0">Question</TextBlock>
+            <TextBlock FontSize="30" x:Name="QuestionNumber">1</TextBlock>
+        </StackPanel>
+        <Grid Grid.Row="1" Background="#FFBAFFFF" BorderBrush="Black" BorderThickness="0, 2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Background="#FFFAFAFA" BorderBrush="Black" BorderThickness="2,0" Padding="30,20">
+                <TextBox PlaceholderText="Question Description" Height="150" FontSize="15" Margin="0,0,0,30"></TextBox>
+                <ComboBox x:Name="TypeSelection" PlaceholderText="Select Question Type" FontSize="20" HorizontalAlignment="Stretch" IsEditable="False" SelectionChanged="OnSelectionChanged" Margin="0,0,0,30">
+                    <ComboBoxItem>True-False</ComboBoxItem>
+                    <ComboBoxItem>Options</ComboBoxItem>
+                    <ComboBoxItem>Text</ComboBoxItem>
+                </ComboBox>
+                <local:QuestionCreatorControl x:Name="QuestionCreator" Type="NoSelection" ></local:QuestionCreatorControl>
+            </StackPanel>
+        </Grid>
+        <local:NavigationControl Grid.Row="2"></local:NavigationControl>
+    </Grid>
+</Page>

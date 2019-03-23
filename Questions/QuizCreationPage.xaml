@@ -1,0 +1,24 @@
+﻿<Page
+    x:Class="Questions.QuizCreationPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Questions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+    <Grid Background="#FFBAFFFF">
+        <StackPanel Width="600" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FAFAFA" Padding="30,20">
+            <TextBlock TextAlignment="Center" FontSize="35">New Quiz</TextBlock>
+            <TextBox x:Name="TitleInput" Background="White" Margin="0, 30, 0, 0" PlaceholderText="Quiz Name" TextAlignment="Center" FontSize="25" TextChanged="OnTextChanged"></TextBox>
+            <Grid Margin="0, 30, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" HorizontalAlignment="Left" Click="OnCancel">Cancel</Button>
+                <Button x:Name="NextButton" Grid.Column="1" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" HorizontalAlignment="Right" Click="OnNext" IsEnabled="False">Next</Button>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

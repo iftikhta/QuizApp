@@ -7,14 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:quizes="using:Questions.Application.Quizes"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="#FAFAFA">
 
-    <Grid Background="#FF78E8EE">
+    <Grid Background="#FFBAFFFF">
         <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView x:Name="QuizList" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Background="#FFBAFFFF" SelectionChanged="Selected">
+        <TextBlock Foreground="#FF555555" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">Quizes</TextBlock>
+        <ListView Grid.Row="1" x:Name="QuizList" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="Selected">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -52,11 +54,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Padding="20" HorizontalAlignment="Right">
-            <Button Background="#FFFFFF" Padding="10,15,10,15" FontSize="20" Width="200" Click="Add_New">Add New Quiz</Button>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="1" Padding="20" HorizontalAlignment="Left">
-            <Button Background="#FFFFFF" Padding="10,15,10,15" FontSize="20" Width="200" Click="Exit">Exit</Button>
-        </StackPanel>
+        <Grid Grid.Row="2" Padding="20" Background="#FAFAFA">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Click="Add_New" HorizontalAlignment="Right">Add New Quiz</Button>
+            <Button Grid.Column="0" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Click="Exit" HorizontalAlignment="Left">Exit</Button>
+        </Grid>
     </Grid>
 </Page>

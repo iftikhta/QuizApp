@@ -135,7 +135,19 @@
     <Compile Include="NavigationBarQuizView.xaml.cs">
       <DependentUpon>NavigationBarQuizView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NavigationControl.xaml.cs">
+      <DependentUpon>NavigationControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuestionCreationPage.xaml.cs">
+      <DependentUpon>QuestionCreationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionCreatorControl.xaml.cs">
+      <DependentUpon>QuestionCreatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuizCreationPage.xaml.cs">
+      <DependentUpon>QuizCreationPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -163,6 +175,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NavigationBarQuizView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NavigationControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuestionCreationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuestionCreatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuizCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
