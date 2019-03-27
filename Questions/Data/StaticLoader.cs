@@ -9,9 +9,9 @@ namespace Questions.Data
 
         private void Initialize()
         {
-            _quizes.Add(QuizBuilder.create("Quiz 1").AddTrueFalseQuestion("True", 5, true).AddTrueFalseQuestion("False", 5, false).Build());
-            _quizes.Add(QuizBuilder.create("Quiz 2").AddTextQuestion("1+2", 1, "3").AddTextQuestion("ABC..", 2, "DE").Build());
-            _quizes.Add(QuizBuilder.create("Quiz 3").AddOptionsQuestion("1,3", 4, new Dictionary<string, bool>()
+            _quizes.Add(QuizBuilder.Create("Quiz 1").AddQuestion("True", 5, true).AddQuestion("False", 5, false).Build());
+            _quizes.Add(QuizBuilder.Create("Quiz 2").AddQuestion("1+2", 1, "3").AddQuestion("ABC..", 2, "DE").Build());
+            _quizes.Add(QuizBuilder.Create("Quiz 3").AddQuestion("1,3", 4, new Dictionary<string, bool>()
             {
                 {"1", true }, {"2", false }, {"3", true }, {"4", false }
             }).Build());

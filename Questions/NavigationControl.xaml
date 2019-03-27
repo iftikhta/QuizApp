@@ -15,16 +15,16 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Click="OnCancel" IsEnabled="{x:Bind HasCancel}">Cancel</Button>
+            <Button x:Name="CancelButton" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" Click="OnCancel">Cancel</Button>
         </StackPanel>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Margin="0,0,20,0" Click="OnBack" IsEnabled="{x:Bind HasBack}">Back</Button>
+            <Button x:Name="BackButton" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" Margin="0,0,10,0" Click="OnBack">Back</Button>
         </StackPanel>
         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Margin="20,0,0,0" Click="OnNext" IsEnabled="{x:Bind HasNext}">Next</Button>
+            <Button x:Name="NextButton" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" Margin="10,0,0,0" Click="OnNext">Next</Button>
         </StackPanel>
         <StackPanel Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" Click="OnFinish" IsEnabled="{x:Bind HasFinish}">Finish</Button>
+            <Button x:Name="FinishButton" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" Click="OnFinish">Finish</Button>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -4,32 +4,26 @@ namespace Questions.Application.Quizes
 {
     public class QuizController
     {
-        private readonly QuizLoader _loader;
-
-        public QuizController(QuizLoader loader)
+        public QuizController()
         {
-            _loader = loader;
-            Quizes = null;  // TODO: Think about loading quizes / Factory / etc.
+            Quizes = new List<Quiz>(); 
         }
 
-        public bool IsLoaded => Quizes != null;
         public List<Quiz> Quizes { get; private set; }
 
-        public void Load()
+        public void Load(List<Quiz> list)
         {
-            Quizes = _loader.Load();
+            Quizes = list;
         }
 
         public void AddQuiz(Quiz quiz)
         {
             Quizes.Add(quiz);
-            _loader.Save(Quizes); // Atomic Updates
         }
 
         public void RemoveQuiz(Quiz quiz)
         {
             Quizes.Remove(quiz);
-            _loader.Save(Quizes);
         }
     }
 }

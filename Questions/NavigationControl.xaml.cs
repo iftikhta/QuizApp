@@ -28,14 +28,31 @@ namespace Questions
         public NavigationControl()
         {
             this.InitializeComponent();
+            HasCancel = HasBack = HasNext = HasFinish = true;
         }
 
         // Properties
 
-        public bool HasCancel { get; set; }
-        public bool HasBack { get; set; }
-        public bool HasNext { get; set; }
-        public bool HasFinish { get; set; }
+        public bool HasCancel
+        {
+            get { return CancelButton.IsEnabled; }
+            set { CancelButton.IsEnabled = value; }
+        }
+        public bool HasBack
+        {
+            get { return BackButton.IsEnabled; }
+            set { BackButton.IsEnabled = value; }
+        }
+        public bool HasNext
+        {
+            get { return NextButton.IsEnabled; }
+            set { NextButton.IsEnabled = value; }
+        }
+        public bool HasFinish
+        {
+            get { return FinishButton.IsEnabled; }
+            set { FinishButton.IsEnabled = value; }
+        }
 
         // Event-Handlers + Mappers
 

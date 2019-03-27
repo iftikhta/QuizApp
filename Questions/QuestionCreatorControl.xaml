@@ -9,26 +9,26 @@
 
     <StackPanel Padding="10">
         <StackPanel x:Name="TextCreator">
-            <TextBox FontSize="20" PlaceholderText="Correct Answer" Padding="10,5,10,5" Height="150"></TextBox>
+            <RichEditBox x:Name="TextAnswer" Height="150" FontSize="15" Padding="10,5,10,5" PlaceholderText="Correct Answer" TextChanged="TextAnswer_OnTextChanged"/>
         </StackPanel>
         <Grid x:Name="TrueFalseCreator" Padding="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <RadioButton HorizontalAlignment="Center" Grid.Column="0" GroupName="TrueFalse" Name="True" FontSize="20" >True</RadioButton>
-            <RadioButton HorizontalAlignment="Center" Grid.Column="1" GroupName="TrueFalse" Name="False" FontSize="20">False</RadioButton>
+            <RadioButton HorizontalAlignment="Center" Grid.Column="0" GroupName="TrueFalse" Name="True" Checked="OnChecked">True</RadioButton>
+            <RadioButton HorizontalAlignment="Center" Grid.Column="1" GroupName="TrueFalse" Name="False" Checked="OnChecked">False</RadioButton>
         </Grid>
         <StackPanel x:Name="OptionsCreator">
-            <ListBox x:Name="OptionsList" Margin="0,0,0,10"></ListBox>
+            <ListBox SelectionMode="Multiple" SelectionChanged="OptionsList_OnSelectionChanged" x:Name="OptionsList" Margin="0,0,0,10"></ListBox>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
-                    <ColumnDefinition Width="200"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" x:Name="NewOption" PlaceholderText="New Option" FontSize="20" Padding="10,5,10,5"></TextBox>
-                <Button HorizontalAlignment="Right" Width="150" Grid.Column="2" Background="#FF08D5D5" Foreground="White" Padding="10,5,10,5" FontSize="20" Click="Button_Click">Add Option</Button>
+                <TextBox Grid.Column="0" x:Name="NewOption" PlaceholderText="New Option" FontSize="15" Padding="10,5,10,5"></TextBox>
+                <Button HorizontalAlignment="Right" Padding="10,5" FontSize="15" MinWidth="100" Grid.Column="2" Background="#FF08D5D5" Foreground="White" Click="Button_Click">Add Option</Button>
             </Grid>
         </StackPanel>
         <StackPanel x:Name="NoSelection">

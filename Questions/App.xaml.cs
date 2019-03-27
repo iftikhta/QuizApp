@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Questions.Application.Quizes;
+using Questions.Data;
 
 namespace Questions
 {
@@ -26,11 +28,19 @@ namespace Questions
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
+
+        private readonly QuizLoader _loader;
+
         public App()
         {
+            _loader = new StaticLoader();
+            Controller = new QuizController();
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        public QuizController Controller { get; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -39,6 +49,9 @@ namespace Questions
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            // Custom Code
+            Controller.Load(_loader.Load());
+
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -66,7 +79,7 @@ namespace Questions
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(QuestionCreationPage), e.Arguments);
+                    rootFrame.Navigate(typeof(QuizCreationPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -95,6 +108,9 @@ namespace Questions
             var deferral = e.SuspendingOperation.GetDeferral();
             //TODO: Save application state and stop any background activity
             deferral.Complete();
+
+            // Custom Code
+            _loader.Save(Controller.Quizes);
         }
     }
 }

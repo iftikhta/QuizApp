@@ -148,6 +148,7 @@
     <Compile Include="QuizCreationPage.xaml.cs">
       <DependentUpon>QuizCreationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CreationState.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

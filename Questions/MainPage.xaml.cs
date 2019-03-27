@@ -20,29 +20,30 @@ namespace Questions
 {
     public sealed partial class MainPage : Page
     {
-        private readonly QuizController _controller = new QuizController(new StaticLoader());
+        private List<Quiz> Quizes;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            _controller.Load();
-            QuizList.ItemsSource = _controller.Quizes;
+            Quizes = ((App) Windows.UI.Xaml.Application.Current).Controller.Quizes;
         }
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Exit");
+            // TODO: Change namespace
+            Windows.UI.Xaml.Application.Current.Exit();
         }
 
         private void Add_New(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine("Added");
+            Frame.Navigate(typeof(QuizCreationPage));
         }
 
         private void Selected(object sender, SelectionChangedEventArgs e)
         {
-            Debug.WriteLine(QuizList.SelectedIndex);
+            var quiz = Quizes[QuizList.SelectedIndex];
+            quiz.Info(); // TODO: Remove
         }
     }
 }
