@@ -7,9 +7,9 @@ namespace Questions.Application.Quizes
 {
     public class Quiz
     {
-        private readonly List<Question> _questions;
+        private readonly List<QuestionItem> _questions;
 
-        public Quiz(string name, List<Question> questions)
+        public Quiz(string name, List<QuestionItem> questions)
         {
             Name = name;
             _questions = questions;
@@ -19,21 +19,6 @@ namespace Questions.Application.Quizes
         public int Count => _questions.Count;
         public int Points => _questions.Select(q => q.Points).Sum();
 
-        public Question this[int index] => _questions[index];
-
-        // TODO: Remove (Debugging Only)
-        public void Info()
-        {
-            foreach (var q in _questions)
-            {
-                Debug.WriteLine(q.Text);
-                Debug.WriteLine(q.Points);
-
-                if (q is OptionsQuestion op)
-                {
-                    op.Options.ForEach(option => Debug.WriteLine(option));
-                }
-            }
-        }
+        public QuestionItem this[int index] => _questions[index];
     }
 }

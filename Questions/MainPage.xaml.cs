@@ -30,12 +30,6 @@ namespace Questions
             Quizes = ((App) Windows.UI.Xaml.Application.Current).Controller.Quizes;
         }
 
-        private void Exit(object sender, RoutedEventArgs e)
-        {
-            // TODO: Change namespace
-            Windows.UI.Xaml.Application.Current.Exit();
-        }
-
         private void Add_New(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(QuizCreationPage), null, new ContinuumNavigationTransitionInfo());
@@ -44,7 +38,7 @@ namespace Questions
         private void Selected(object sender, SelectionChangedEventArgs e)
         {
             var quiz = Quizes[QuizList.SelectedIndex];
-            quiz.Info(); // TODO: Remove
+            Debug.WriteLine(quiz);
         }
     }
 }

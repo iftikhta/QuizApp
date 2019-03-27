@@ -23,7 +23,7 @@ namespace Questions
 {
     public sealed partial class QuestionCreatorControl : UserControl
     {
-        private CreationType? _type;
+        private QuestionType? _type;
         private ImmutableList<string> _options = ImmutableList<string>.Empty;
 
         private void Hide()
@@ -94,10 +94,10 @@ namespace Questions
 
             switch (_type)
             {
-                case CreationType.Options:
+                case QuestionType.Options:
                     OptionsCreator.Visibility = Visibility.Visible;
                     break;
-                case CreationType.Text:
+                case QuestionType.Text:
                     TextCreator.Visibility = Visibility.Visible;
                     break;
                 default:
@@ -119,7 +119,7 @@ namespace Questions
 
         public event EventHandler ValueUpdated;
 
-        public CreationType? Type
+        public QuestionType? Type
         {
             get { return _type; }
             set
@@ -136,11 +136,11 @@ namespace Questions
             {
                 switch (_type)
                 {
-                    case CreationType.Options:
+                    case QuestionType.Options:
                         return CurrentOptions;
-                    case CreationType.Text:
+                    case QuestionType.Text:
                         return CurrentText;
-                    case CreationType.TrueFalse:
+                    case QuestionType.TrueFalse:
                         return CurrentChecks;
                     default:
                         return null;
@@ -150,13 +150,13 @@ namespace Questions
             {
                 switch (_type)
                 {
-                    case CreationType.Options:
+                    case QuestionType.Options:
                         CurrentOptions = (Dictionary<string, bool>)value;
                         break;
-                    case CreationType.Text:
+                    case QuestionType.Text:
                         CurrentText = (string) value;
                         break;
-                    case CreationType.TrueFalse:
+                    case QuestionType.TrueFalse:
                         CurrentChecks = (bool) value;
                         break;
                 }

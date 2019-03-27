@@ -1,28 +1,29 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Questions.Application.Quizes;
 
 namespace Questions.Application.Questions
 {
     public class OptionsQuestion: Question
     {
-        private readonly List<int> _correctList;
+        private readonly Dictionary<string, bool> _options;
 
-        public OptionsQuestion(List<string> options, List<int> correct, string text, int points) : base(text, points)
+        public OptionsQuestion(Dictionary<string, bool> options, int points) : base(points)
         {
-            _correctList = correct;
-            Options = options;
+            _options = options;
         }
 
-        public List<string> Options { get; }
+        public List<string> Options => _options.Keys.ToList();
 
         public override int CheckAnswer(object answer)
         {
-            if (!(answer is List<int>)) return 0;
+            if (!(answer is List<string>)) return 0;
 
-            var answerList = (List<int>) answer;
+            var answerList = (List<string>) answer;
 
-            var correctCount = answerList.FindAll(ans => _correctList.Contains(ans)).Count;
+            var correctCount = answerList.FindAll(ans => _options[ans]).Count;
 
-            return GetPoints(_correctList.Count, correctCount);
+            return GetPoints(_options.Count, correctCount);
         }
     }
 }

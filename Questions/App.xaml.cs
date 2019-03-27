@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -33,7 +35,7 @@ namespace Questions
 
         public App()
         {
-            _loader = new StaticLoader();
+            _loader = new FileLoader();
             Controller = new QuizController();
 
             this.InitializeComponent();
@@ -101,11 +103,10 @@ namespace Questions
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
             deferral.Complete();
 
             // Custom Code
-            _loader.Save(Controller.Quizes);
+            Task.Run(() => new FileLoader().Save(Controller.Quizes)).GetAwaiter().GetResult();
         }
     }
 }

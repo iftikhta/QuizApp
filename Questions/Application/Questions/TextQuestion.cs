@@ -1,4 +1,5 @@
 ﻿using System;
+using Questions.Application.Quizes;
 
 namespace Questions.Application.Questions
 {
@@ -11,7 +12,7 @@ namespace Questions.Application.Questions
             return value.ToLower().Trim();
         }
 
-        public TextQuestion(string answer, string text, int points) : base(text, points)
+        public TextQuestion(string answer, int points) : base(points)
         {
             _answer = Normalize(answer);
         }

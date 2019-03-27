@@ -123,11 +123,15 @@
     <Compile Include="Application\Questions\Question.cs" />
     <Compile Include="Application\Questions\TextQuestion.cs" />
     <Compile Include="Application\Questions\SimpleQuestion.cs" />
-    <Compile Include="Application\Questions\TrueFalseQuestion.cs" />
+    <Compile Include="Application\Quizes\QuestionItem.cs" />
+    <Compile Include="Application\Quizes\QuestionType.cs" />
     <Compile Include="Application\Quizes\Quiz.cs" />
     <Compile Include="Application\Quizes\QuizBuilder.cs" />
     <Compile Include="Application\Quizes\QuizController.cs" />
     <Compile Include="Application\Quizes\QuizLoader.cs" />
+    <Compile Include="Data\FileLoader.cs" />
+    <Compile Include="Data\FileLoaderReader.cs" />
+    <Compile Include="Data\FileLoaderWriter.cs" />
     <Compile Include="Data\StaticLoader.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

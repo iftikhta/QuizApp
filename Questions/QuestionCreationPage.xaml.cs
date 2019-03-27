@@ -28,17 +28,12 @@ namespace Questions
     /// </summary>
     public sealed partial class QuestionCreationPage : Page
     {
-        private static readonly List<CreationType> SelectionOptions = new List<CreationType>()
-        {
-            CreationType.TrueFalse, CreationType.Options, CreationType.Text
-        };
-
         private QuizBuilder _builder;
         private int _position;
 
         private bool IsUpdating => _position <= _builder.Count; // Editing existing element
 
-        private CreationType CurrentCreationType => SelectionOptions[TypeSelection.SelectedIndex];
+        private QuestionType CurrentCreationType => QuestionTypeConverter.ToType(TypeSelection.SelectedIndex);
 
         private string CurrentText
         {
@@ -81,7 +76,7 @@ namespace Questions
                 QuestionCreator.Value = question.Answer;
                 CurrentText = question.Text;
                 CurrentPoints = question.Points;
-                TypeSelection.SelectedIndex = SelectionOptions.IndexOf(question.Type);
+                TypeSelection.SelectedIndex = QuestionTypeConverter.ToValue(question.Type);
             }
             else
             {
