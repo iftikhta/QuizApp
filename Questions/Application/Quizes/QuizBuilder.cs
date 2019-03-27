@@ -1,30 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using Questions.Application.Questions;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using Questions.Application.Questions;
+using Windows.Media.Protection.PlayReady;
 
 namespace Questions.Application.Quizes
 {
+    public enum CreationType { TrueFalse, Options, Text }
+
+    public class QuestionData
+    {
+        public string Text { get; set; }
+        public int Points { get; set; }
+        public object Answer { get; set; }
+        public CreationType Type { get; set; }
+    }
+
     public class QuizBuilder
     {
-        public static QuizBuilder Create(string name)
+        public static QuizBuilder Create(string name = "")
         {
             return new QuizBuilder(name);
         }
 
         private string _name;
-        private readonly List<Question> _questions;
+        private readonly List<QuestionData> _questions;
 
-        private void AddTrueFalseQuestion(string text, int points, bool answer)
-        {
-            _questions.Add(new TrueFalseQuestion(answer, text, points));
-        }
-
-        private void AddTextQuestion(string text, int points, string answer)
-        {
-            _questions.Add(new TextQuestion(answer, text, points));
-        }
-
-        private void AddOptionsQuestion(string text, int points, Dictionary<string, bool> options)
+        // TODO: Think about moving away
+        private static Question GetOptionsQuestion(Dictionary<string, bool> options, string text, int points)
         {
             var optionsList = options.Keys.ToList();
             List<int> correctList = new List<int>();
@@ -33,13 +36,33 @@ namespace Questions.Application.Quizes
                 if (options[optionsList[0]])
                     correctList.Add(i);
 
-            _questions.Add(new OptionsQuestion(optionsList, correctList, text, points));
+            return new OptionsQuestion(optionsList, correctList, text, points);
+        }
+
+        private static Question MapQuestionData(QuestionData data)
+        {
+            switch (data.Type)
+            {
+                case CreationType.Options:
+                    return GetOptionsQuestion((Dictionary<string, bool>)data.Answer, data.Text, data.Points);
+                case CreationType.Text:
+                    return new TextQuestion((string)data.Answer, data.Text, data.Points);
+                default:
+                    return new TrueFalseQuestion((bool) data.Answer, data.Text, data.Points);
+            }
+        }
+
+        private static CreationType GetCreationType(object value)
+        {
+            if (value is string) return CreationType.Text;
+            if (value is bool) return CreationType.TrueFalse;
+            return CreationType.Options;
         }
 
         private QuizBuilder(string name)
         {
             _name = name;
-            _questions = new List<Question>();
+            _questions = new List<QuestionData>();
         }
 
         public string Name => _name;
@@ -51,12 +74,20 @@ namespace Questions.Application.Quizes
             return this;
         }
 
-        public QuizBuilder AddQuestion(string text, int points, object value)
+        public QuizBuilder AddQuestion(string text, int points, object answer, int? position = null)
         {
-            if (value is bool val) AddTrueFalseQuestion(text, points, val);
-            if (value is Dictionary<string, bool> dict) AddOptionsQuestion(text, points, dict);
-            if (value is string s) AddTextQuestion(text, points, s);
+            var question = new QuestionData()
+                {Text = text, Points = points, Answer = answer, Type = GetCreationType(answer)};
+
+            if (position == null || position >= this._questions.Count) this._questions.Add(question);
+            else this._questions[(int)position] = question;
+
             return this;
+        }
+
+        public QuestionData GetQuestion(int i)
+        {
+            return _questions[i];
         }
 
         public QuizBuilder RemoveQuestion(int i)
@@ -67,7 +98,8 @@ namespace Questions.Application.Quizes
 
         public Quiz Build()
         {
-            return new Quiz(_name, _questions);
+            var questions = _questions.Select(MapQuestionData).ToList();
+            return new Quiz(_name, questions);
         }
     }
 }

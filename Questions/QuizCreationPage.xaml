@@ -11,16 +11,16 @@
     <Grid>
         <Border Background="#FFBAFFFF"></Border>
 
-        <StackPanel Width="600" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FAFAFA" Padding="30,20">
-            <TextBlock TextAlignment="Center" FontSize="35">New Quiz</TextBlock>
-            <TextBox x:Name="TitleInput" Background="White" Margin="0, 30, 0, 0" PlaceholderText="Quiz Name" TextAlignment="Center" FontSize="25" TextChanged="OnTextChanged"></TextBox>
+        <StackPanel Margin="20,10" MinWidth="400" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FAFAFA" Padding="30,20">
+            <TextBlock TextAlignment="Center" FontSize="30">New Quiz</TextBlock>
+            <TextBox x:Name="TitleInput" Background="White" Margin="0, 30, 0, 0" PlaceholderText="Quiz Name" TextAlignment="Center" FontSize="20" TextChanged="OnTextChanged"></TextBox>
             <Grid Margin="0, 30, 0, 0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" HorizontalAlignment="Left" Click="OnCancel">Cancel</Button>
-                <Button x:Name="NextButton" Grid.Column="1" Background="#FF08D5D5" Foreground="White" Padding="10,15,10,15" FontSize="20" Width="200" HorizontalAlignment="Right" Click="OnNext">Next</Button>
+                <Button Grid.Column="0" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" HorizontalAlignment="Left" Click="OnCancel">Cancel</Button>
+                <Button x:Name="NextButton" Grid.Column="1" Background="#FF08D5D5" Foreground="White" Padding="10,5" FontSize="15" MinWidth="100" HorizontalAlignment="Right" Click="OnNext">Next</Button>
             </Grid>
         </StackPanel>
     </Grid>

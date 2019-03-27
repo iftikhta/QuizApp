@@ -11,14 +11,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Border Background="#FFBAFFFF" Grid.RowSpan="2"/>
 
-        <TextBlock Foreground="#FF555555" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">Quizes</TextBlock>
+        <TextBlock Grid.Row="0" Margin="0,10" Foreground="#FF555555" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center">Quizes</TextBlock>
         <ListView Grid.Row="1" x:Name="QuizList" ItemsSource="{x:Bind Path=Quizes}"  SelectionChanged="Selected">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -28,7 +28,7 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="quizes:Quiz">
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10,15,10,15" BorderBrush="#07b4b4" BorderThickness="1">
+                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="5, 10" BorderBrush="#07b4b4" BorderThickness="1">
                         <Grid.Background>
                             <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
                                 <GradientStop Color="#FF08D5D5" Offset="0"/>
@@ -44,20 +44,20 @@
                             <RowDefinition Height="20"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" FontSize="30" Foreground="#FFF" Text="{x:Bind Name}"></TextBlock>
+                        <TextBlock Grid.Column="0" Grid.RowSpan="3" VerticalAlignment="Center" FontSize="20" Foreground="#FFF" Text="{x:Bind Name}"></TextBlock>
                         <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock FontSize="20"  Foreground="#FFF" Margin="0,0,5,0">Questions:</TextBlock>
-                            <TextBlock FontSize="20"  Foreground="#FFF" Text="{x:Bind Count}"></TextBlock>
+                            <TextBlock FontSize="15"  Foreground="#FFF" Margin="0,0,5,0">Questions:</TextBlock>
+                            <TextBlock FontSize="15"  Foreground="#FFF" Text="{x:Bind Count}"></TextBlock>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBlock FontSize="20"  Foreground="#FFF" Margin="0,0,5,0">Total Points:</TextBlock>
-                            <TextBlock FontSize="20"  Foreground="#FFF" Text="{x:Bind Points}"></TextBlock>
+                            <TextBlock FontSize="15"  Foreground="#FFF" Margin="0,0,5,0">Total Points:</TextBlock>
+                            <TextBlock FontSize="15"  Foreground="#FFF" Text="{x:Bind Points}"></TextBlock>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Grid Grid.Row="2" Padding="20" Background="#FAFAFA">
+        <Grid Grid.Row="2" Padding="15, 10" Background="#FAFAFA">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

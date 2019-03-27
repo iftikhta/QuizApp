@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Questions.Application.Quizes;
 using Questions.Data;
@@ -37,7 +38,7 @@ namespace Questions
 
         private void Add_New(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(QuizCreationPage));
+            Frame.Navigate(typeof(QuizCreationPage), null, new ContinuumNavigationTransitionInfo());
         }
 
         private void Selected(object sender, SelectionChangedEventArgs e)

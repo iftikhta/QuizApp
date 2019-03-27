@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Padding="10">
+    <StackPanel Padding="0,10">
         <StackPanel x:Name="TextCreator">
             <RichEditBox x:Name="TextAnswer" Height="150" FontSize="15" Padding="10,5,10,5" PlaceholderText="Correct Answer" TextChanged="TextAnswer_OnTextChanged"/>
         </StackPanel>
@@ -20,7 +20,16 @@
             <RadioButton HorizontalAlignment="Center" Grid.Column="1" GroupName="TrueFalse" Name="False" Checked="OnChecked">False</RadioButton>
         </Grid>
         <StackPanel x:Name="OptionsCreator">
-            <ListBox SelectionMode="Multiple" SelectionChanged="OptionsList_OnSelectionChanged" x:Name="OptionsList" Margin="0,0,0,10"></ListBox>
+            <ListBox Height="150" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Multiple" SelectionChanged="OptionsList_OnSelectionChanged" x:Name="OptionsList" Margin="0,0,0,10"></ListBox>
+            <Grid Margin="0, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button HorizontalAlignment="Center" Padding="10,5" FontSize="15" MinWidth="100" Grid.Column="0" Background="OrangeRed" Foreground="White" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="Button_Click_1">Clear All</Button>
+                <Button HorizontalAlignment="Center" Padding="10,5" FontSize="15" MinWidth="100" Grid.Column="2" Background="OrangeRed" Foreground="White" Margin="0,0,0,0" VerticalAlignment="Bottom" Click="Button_Click_2">Delete Selected</Button>
+            </Grid>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -28,7 +37,7 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Column="0" x:Name="NewOption" PlaceholderText="New Option" FontSize="15" Padding="10,5,10,5"></TextBox>
-                <Button HorizontalAlignment="Right" Padding="10,5" FontSize="15" MinWidth="100" Grid.Column="2" Background="#FF08D5D5" Foreground="White" Click="Button_Click">Add Option</Button>
+                <Button HorizontalAlignment="Center" Padding="10,5" FontSize="15" MinWidth="100" Grid.Column="2" Background="#FF08D5D5" Foreground="White" Click="Button_Click" Margin="0,0,0,0" VerticalAlignment="Bottom">Add Option</Button>
             </Grid>
         </StackPanel>
         <StackPanel x:Name="NoSelection">

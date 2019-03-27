@@ -6,47 +6,48 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="#FFFAFAFA">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Margin="0, 10">
             <TextBlock FontSize="30" Margin="0,0,5,0">Question</TextBlock>
             <TextBlock FontSize="30" x:Name="QuestionNumber"></TextBlock>
         </StackPanel>
         <Grid Grid.Row="1" Background="#FFBAFFFF" BorderBrush="Black" BorderThickness="0, 2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="50"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="1">
-                <StackPanel Background="#FFFAFAFA" BorderBrush="Black" BorderThickness="2,0">
-                    <StackPanel MaxWidth="600" Padding="30,20">
-                        <RichEditBox x:Name="QuestionText" Height="150" FontSize="15" Margin="0,0,0,30" PlaceholderText="Question Description" TextChanged="QuestionText_TextChanged"/>
-                        <Grid Margin="0, 0,0,30">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="30"></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Padding="15, 0" Grid.Column="0" VerticalAlignment="Center">Points</TextBlock>
-                            <TextBox x:Name="QuestionPoints" PlaceholderText="Weight of Question" Grid.Column="2" TextChanged="QuestionPoints_TextChanged"></TextBox>
-                        </Grid>
-                        <ComboBox x:Name="TypeSelection" PlaceholderText="Select Question Type" FontSize="15" HorizontalAlignment="Stretch" IsEditable="False" SelectionChanged="OnSelectionChanged" Margin="0,0,0,30">
-                            <ComboBoxItem>True-False</ComboBoxItem>
-                            <ComboBoxItem>Options</ComboBoxItem>
-                            <ComboBoxItem>Text</ComboBoxItem>
-                        </ComboBox>
-                        <local:QuestionCreatorControl x:Name="QuestionCreator" Type="NoSelection" ValueUpdated="QuestionCreator_OnValueUpdated"></local:QuestionCreatorControl>
-                    </StackPanel>
+            <ScrollViewer MaxWidth="900" Grid.Column="1" Padding="20,10" Background="#FFFAFAFA" BorderBrush="Black" BorderThickness="2,0">
+                <StackPanel Padding="30,20">
+                    <RichEditBox x:Name="QuestionText" Height="150" FontSize="15" Margin="0,0,0,30" PlaceholderText="Question Description" TextChanged="QuestionText_TextChanged"/>
+                    <Grid Margin="0, 0,0,30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Padding="15, 0" Grid.Column="0" VerticalAlignment="Center">Points</TextBlock>
+                        <TextBox x:Name="QuestionPoints" PlaceholderText="Weight of Question" Grid.Column="2" TextChanged="QuestionPoints_TextChanged"></TextBox>
+                    </Grid>
+                    <ComboBox x:Name="TypeSelection" PlaceholderText="Select Question Type" FontSize="15" HorizontalAlignment="Stretch" IsEditable="False" SelectionChanged="OnSelectionChanged" Margin="0,0,0,30">
+                        <ComboBoxItem>True-False</ComboBoxItem>
+                        <ComboBoxItem>Options</ComboBoxItem>
+                        <ComboBoxItem>Text</ComboBoxItem>
+                    </ComboBox>
+                    <local:QuestionCreatorControl x:Name="QuestionCreator" ValueUpdated="QuestionCreator_OnValueUpdated"></local:QuestionCreatorControl>
+                    <Button x:Name="DeleteButton" Margin="20,30,20,0" MaxWidth="200" Background="OrangeRed" Foreground="White" HorizontalAlignment="Stretch" Click="DeleteButton_Click">Delete</Button>
                 </StackPanel>
             </ScrollViewer>
         </Grid>
-        <local:NavigationControl x:Name="Navigation" Grid.Row="2" HasCancel="True" HasBack="True" Back="NavigationControl_OnBack" Next="NavigationControl_OnNext" Cancel="NavigationControl_OnCancel" Finish="NavigationControl_OnFinish"></local:NavigationControl>
+        <StackPanel Grid.Row="2">
+            <local:NavigationControl x:Name="Navigation" HasCancel="True" HasBack="True" Back="NavigationControl_OnBack" Next="NavigationControl_OnNext" Cancel="NavigationControl_OnCancel" Finish="NavigationControl_OnFinish"></local:NavigationControl>
+        </StackPanel>
     </Grid>
 </Page>

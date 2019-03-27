@@ -15,16 +15,15 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Questions.Application.Quizes;
 
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Questions
 {
-    public enum CreationType { TrueFalse, Options, Text, NoSelection }
-
     public sealed partial class QuestionCreatorControl : UserControl
     {
-        private CreationType _type;
+        private CreationType? _type;
         private ImmutableList<string> _options = ImmutableList<string>.Empty;
 
         private void Hide()
@@ -41,6 +40,10 @@ namespace Questions
                 result = result.Trim();
                 return string.IsNullOrEmpty(result) ? null : result;
             }
+            set
+            {
+                TextAnswer.Document.SetText(TextSetOptions.None, value);
+            }
         }
 
         private Dictionary<string, bool> CurrentOptions
@@ -54,6 +57,15 @@ namespace Questions
                 _options.ForEach((option) => options[option] = OptionsList.SelectedItems.Contains(option));
                 return options;
             }
+            set
+            {
+                int i = 0;
+                OptionsList.ItemsSource = _options = value.Keys.ToImmutableList();
+                _options.ForEach((option) =>
+                {
+                    if(value[option]) OptionsList.SelectedItems.Insert(i++, option);
+                });
+            }
         }
 
         private bool? CurrentChecks
@@ -63,11 +75,22 @@ namespace Questions
                 if (True.IsChecked == true || False.IsChecked == true) return True.IsChecked;
                 return null;
             }
+            set
+            {
+                if (value == true) True.IsChecked = true;
+                else False.IsChecked = true;
+            }
         }
 
         private void SetVisibility()
         {
             Hide();
+
+            if (_type == null)
+            {
+                NoSelection.Visibility = Visibility.Visible;
+                return;
+            }
 
             switch (_type)
             {
@@ -77,11 +100,8 @@ namespace Questions
                 case CreationType.Text:
                     TextCreator.Visibility = Visibility.Visible;
                     break;
-                case CreationType.TrueFalse:
-                    TrueFalseCreator.Visibility = Visibility.Visible;
-                    break;
                 default:
-                    NoSelection.Visibility = Visibility.Visible;
+                    TrueFalseCreator.Visibility = Visibility.Visible;
                     break;
             }
         }
@@ -99,7 +119,7 @@ namespace Questions
 
         public event EventHandler ValueUpdated;
 
-        public CreationType Type
+        public CreationType? Type
         {
             get { return _type; }
             set
@@ -126,20 +146,38 @@ namespace Questions
                         return null;
                 }
             }
+            set
+            {
+                switch (_type)
+                {
+                    case CreationType.Options:
+                        CurrentOptions = (Dictionary<string, bool>)value;
+                        break;
+                    case CreationType.Text:
+                        CurrentText = (string) value;
+                        break;
+                    case CreationType.TrueFalse:
+                        CurrentChecks = (bool) value;
+                        break;
+                }
+                UpdateValue();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // Pseudo-Binding (Ask about efficiency)
             var text = NewOption.Text;
-            if (string.IsNullOrEmpty(text) || _options.Count >= 5) return;
+            if (string.IsNullOrEmpty(text)) return;
 
             OptionsList.ItemsSource = _options = _options.Add(text);
+            OptionsList.ScrollIntoView(OptionsList.Items.Last());
             NewOption.Text = "";
             UpdateValue();
         }
 
-        // TODO: Trigger custom Update-Event on any changes + Selection-Change
+        // TODO: Heavy refactoring
+        
         private void TextAnswer_OnTextChanged(object sender, RoutedEventArgs e)
         {
             UpdateValue();
@@ -152,6 +190,18 @@ namespace Questions
 
         private void OptionsList_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            UpdateValue();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            OptionsList.ItemsSource = _options = ImmutableList<string>.Empty;
+            UpdateValue();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            OptionsList.ItemsSource = _options = _options.Where(option => !OptionsList.SelectedItems.Contains(option)).ToImmutableList();
             UpdateValue();
         }
     }
