@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="Questions.QuizViewPage"
+    x:Class="Questions.QuizView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Questions"
@@ -10,7 +10,7 @@
 
     <Grid Background="#FF08D5D5">
         <TextBlock  FontSize="65" TextAlignment="Center" HorizontalAlignment="Center"  Text="Quiz View" TextWrapping="Wrap" VerticalAlignment="Top" Height="161" Width="1478" FontFamily="Comic Sans MS" TextDecorations="Underline"/>
-        <StackPanel Orientation="Horizontal" Margin="406,185,416,405" Padding="50,50,50,50" Background="LightGray">
+        <StackPanel Orientation="Horizontal" Margin="405,185,416,405" Padding="50,50,50,50" Background="LightGray" HorizontalAlignment="Center">
 
             <StackPanel HorizontalAlignment="Left"   VerticalAlignment="Top" >
                 <TextBlock Margin="0,25,0,0"  FontSize="50" HorizontalAlignment="Left" Text="Quiz Name:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
@@ -28,7 +28,7 @@
         </StackPanel>
 
 
-        <local:NavigationBarQuizView Margin="10,883,10,17" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+        <local:NavigationBarQuizView Margin="40,883,45,40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="NavigationBarQuizView_Loaded" />
 
     </Grid>
 </Page>

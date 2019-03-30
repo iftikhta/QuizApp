@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+
 // The User Control item template is documented at https://go.microsoft.com/fwlink/?LinkId=234236
 
 namespace Questions
@@ -27,6 +28,12 @@ namespace Questions
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            //if (this.Frame.CanGoBack)
+            //    this.Frame.GoBack();
         }
     }
 }

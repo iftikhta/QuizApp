@@ -152,6 +152,9 @@
     <Compile Include="QuizCreationPage.xaml.cs">
       <DependentUpon>QuizCreationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuizView.xaml.cs">
+      <DependentUpon>QuizView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\CreationState.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +202,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="QuizViewPage.xaml">
+    <Page Include="QuizView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
