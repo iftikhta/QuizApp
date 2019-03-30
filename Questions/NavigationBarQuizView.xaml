@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Height="100" Width="100">
 
-    <Grid Background="Red" Height="100">
-        <Button x:Name="StartButton" Content="Start &gt;" FontSize="36" FontFamily="Comic Sans MS" Background="Blue" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center"  BorderBrush="#FFC7B71A" Foreground="White" Click="StartButton_Click" />
-        <Button x:Name="Back" Content="&lt; Back" FontSize="36" FontFamily="Comic Sans MS" Background="Blue" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center"  BorderBrush="#FFC7B71A" Foreground="White" />
+    <Grid Height="100">
+        <Button x:Name="StartButton" Content="Start &gt;" FontSize="36" FontFamily="Comic Sans MS" Background="OrangeRed" HorizontalAlignment="Right" Margin="0,0,50,0" VerticalAlignment="Center"  BorderBrush="#FFC7B71A" Foreground="White" Click="StartButton_Click" />
+        <Button x:Name="Back" Content="&lt; Back" FontSize="36" FontFamily="Comic Sans MS" Background="OrangeRed" HorizontalAlignment="Left" Margin="50,0,0,0" VerticalAlignment="Center"  BorderBrush="#FFC7B71A" Foreground="White" />
 
     </Grid>
 </UserControl>
