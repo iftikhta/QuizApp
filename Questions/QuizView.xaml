@@ -10,7 +10,7 @@
 
     <Grid Background="#FF08D5D5">
         <TextBlock  FontSize="65" TextAlignment="Center" HorizontalAlignment="Center"  Text="Quiz View" TextWrapping="Wrap" VerticalAlignment="Top" Height="161" Width="1478" FontFamily="Comic Sans MS" TextDecorations="Underline"/>
-        <StackPanel Orientation="Horizontal" Margin="405,185,416,405" Padding="50,50,50,50" Background="LightGray" HorizontalAlignment="Center">
+        <StackPanel Orientation="Horizontal" Padding="50,50,50,50" Background="LightGray" HorizontalAlignment="Center" VerticalAlignment="Center">
 
             <StackPanel HorizontalAlignment="Left"   VerticalAlignment="Top" >
                 <TextBlock Margin="0,25,0,0"  FontSize="50" HorizontalAlignment="Left" Text="Quiz Name:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
@@ -28,7 +28,7 @@
         </StackPanel>
 
 
-        <local:NavigationBarQuizView Start="NavigationBarQuizView_OnStart" Back="NavigationBarQuizView_OnBack" HasBackButton="True" HasStartButton="True"  Margin="40,883,45,40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="NavigationBarQuizView_Loaded" />
+        <local:NavigationBarQuizView Start="NavigationBarQuizView_OnStart" Back="NavigationBarQuizView_OnBack" HasBackButton="True" HasStartButton="True"   HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Loaded="NavigationBarQuizView_Loaded" />
         <!--<local:NavigationControl Margin="-5,940,5,0" HasCancel="False" HasFinish="False"  />-->
     </Grid>
 </Page>
