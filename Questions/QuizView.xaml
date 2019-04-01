@@ -28,7 +28,7 @@
         </StackPanel>
 
 
-        <local:NavigationBarQuizView Margin="40,883,45,40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="NavigationBarQuizView_Loaded" />
-
+        <local:NavigationBarQuizView Start="NavigationBarQuizView_OnStart" Back="NavigationBarQuizView_OnBack" HasBackButton="True" HasStartButton="True"  Margin="40,883,45,40" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Loaded="NavigationBarQuizView_Loaded" />
+        <!--<local:NavigationControl Margin="-5,940,5,0" HasCancel="False" HasFinish="False"  />-->
     </Grid>
 </Page>

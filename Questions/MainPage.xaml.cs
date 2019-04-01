@@ -26,7 +26,6 @@ namespace Questions
         public MainPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = NavigationCacheMode.Enabled; // Taha: This probably isn't needed in our case 
             Quizes = ((App) Windows.UI.Xaml.Application.Current).Controller.Quizes;
         }
 

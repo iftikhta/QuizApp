@@ -129,6 +129,7 @@
     <Compile Include="Application\Quizes\QuizBuilder.cs" />
     <Compile Include="Application\Quizes\QuizController.cs" />
     <Compile Include="Application\Quizes\QuizLoader.cs" />
+    <Compile Include="Application\QuizRunner\QuizRunner.cs" />
     <Compile Include="Data\FileLoader.cs" />
     <Compile Include="Data\FileLoaderReader.cs" />
     <Compile Include="Data\FileLoaderWriter.cs" />
@@ -148,6 +149,9 @@
     </Compile>
     <Compile Include="QuestionCreatorControl.xaml.cs">
       <DependentUpon>QuestionCreatorControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuestionPage.xaml.cs">
+      <DependentUpon>QuestionPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="QuizCreationPage.xaml.cs">
       <DependentUpon>QuizCreationPage.xaml</DependentUpon>
@@ -195,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuestionCreatorControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuestionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

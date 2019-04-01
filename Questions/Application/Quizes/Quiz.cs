@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Windows.UI.Xaml.Automation;
 using Questions.Application.Questions;
 
 namespace Questions.Application.Quizes
@@ -20,5 +21,11 @@ namespace Questions.Application.Quizes
         public int Points => _questions.Select(q => q.Points).Sum();
 
         public QuestionItem this[int index] => _questions[index];
+
+        //TAHA: addding a way to access question list
+      
+
+ 
+
     }
 }
