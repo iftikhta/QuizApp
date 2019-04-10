@@ -14,10 +14,9 @@
 
           
 
-            <StackPanel HorizontalAlignment="Left"  VerticalAlignment="Top" >
-                <TextBlock Margin="0,25,0,0" x:Name="QuestionDescription"  FontSize="50" HorizontalAlignment="Left" Text="{}{Quiz Name}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
-                <TextBlock Margin="0,25,0,0" x:Name="QuestionAnswer" FontSize="50" HorizontalAlignment="Left" Text="{}{#ofQs}:" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS" />
-                <TextBlock Margin="0,25,0,0" x:Name="QuizTotalPoints"  FontSize="50" HorizontalAlignment="Right" Text="{}{#ofPoints}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+            <StackPanel MinWidth="400" HorizontalAlignment="Left"  VerticalAlignment="Top" >
+                <TextBlock Margin="0,25,0,0" x:Name="QuestionDescription"  FontSize="20" HorizontalAlignment="Left" Text="{}{Question Description}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+                <local:QuizDisplayControl x:Name="DisplayedQuestion"></local:QuizDisplayControl>
             </StackPanel>
 
         </StackPanel>

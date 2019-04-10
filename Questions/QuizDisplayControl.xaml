@@ -1,0 +1,30 @@
+﻿<UserControl
+    x:Class="Questions.QuizDisplayControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Questions"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    
+    <StackPanel Padding="0,10">
+        <StackPanel x:Name="TextQuestion">
+            <RichEditBox x:Name="TextAnswer" Height="150" FontSize="15" Padding="10,5,10,5" PlaceholderText="Answer here"/>
+        </StackPanel>
+        <Grid x:Name="TrueFalseQuestion" Padding="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <RadioButton HorizontalAlignment="Center" Grid.Column="0" GroupName="TrueFalse" Name="True" >True</RadioButton>
+            <RadioButton HorizontalAlignment="Center" Grid.Column="1" GroupName="TrueFalse" Name="False" >False</RadioButton>
+        </Grid>
+        <StackPanel x:Name="OptionsQuestion">
+            <ListBox Height="150" ScrollViewer.VerticalScrollBarVisibility="Visible" SelectionMode="Multiple" x:Name="OptionsList" Margin="0,0,0,10"></ListBox>
+        </StackPanel>
+       
+    </StackPanel>
+</UserControl>

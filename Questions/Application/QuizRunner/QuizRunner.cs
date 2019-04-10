@@ -11,7 +11,7 @@ namespace Questions.Application.QuizRunner
     class QuizRunner
     {
         //ctor not needed?
-
+        public List<Answer> Answer{ get; set; }
         public Quiz CurrentQuiz{ get; set; }
 
         public int CurrentQuestionNum { get; set; } = 0;
@@ -31,16 +31,11 @@ namespace Questions.Application.QuizRunner
 
         public void PreviousQuestion()
         {
-            if (!IsFirstQuestion())
+            if (!IsFirstQuestion)
                 CurrentQuestionNum -= 1;
         }
 
-        public bool IsFirstQuestion()
-        {
-            if (CurrentQuestionNum == 0)
-                return true;
-            return false;
-        }
+        public bool IsFirstQuestion => CurrentQuestionNum == 0;
 
         public bool IsLastQuestion()
         {
