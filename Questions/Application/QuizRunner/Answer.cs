@@ -11,7 +11,7 @@ namespace Questions.Application.QuizRunner
     class Answer
     {
         public QuestionType QuestionType { get; set; }
-        public Object GivenAnswer { get; set; }
+        public object GivenAnswer { get; set; }
         public float Points { get; set; }
 
     }

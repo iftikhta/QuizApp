@@ -11,10 +11,11 @@ namespace Questions.Application.QuizRunner
     class QuizRunner
     {
         //ctor not needed?
-        public List<Answer> Answer{ get; set; }
+        public List<Answer> Answer{ get; set; } = new List<Answer>();
         public Quiz CurrentQuiz{ get; set; }
 
         public int CurrentQuestionNum { get; set; } = 0;
+        
 
         public int Score { get; set; }
 
