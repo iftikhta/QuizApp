@@ -39,90 +39,73 @@ namespace Questions
         private void NavigationBarQuizView_OnBack(object sender, EventArgs e)
         {
             AppendAnswer();
-
-           // if quiz._questions //check the current question index, if its first, disable back, if its last, disable forward
-           if (!q.IsFirstQuestion)
-           {
                q.PreviousQuestion();
                this.Frame.Navigate(typeof(QuestionPage), q);
                //this.Frame.GoBack();
-           }
-           else
-           {
-               Navbar.HasBack = false; //other bar uses HasBackButton
-               //TAHA: Ask greg how I can create a qucik notification/dialog/message warning that youc ant go further back
-           }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
             if (e.Parameter is QuizRunner)
             {
+                //setup beheind the scenes
                 q = (QuizRunner)e.Parameter;
+                Heading.Text = $"Question #{q.CurrentQuestionNum + 1}";
                 var CurrQuestion = q.CurrentQuiz[q.CurrentQuestionNum]; //cache and easily read the current queston
                 int CurrAnswer = -1;
                 if (q.CurrentQuestionNum < q.Answer.Count)
                     CurrAnswer = q.CurrentQuestionNum;
 
-                QuestionDescription.Text = CurrQuestion.Text;
+                QuestionDescription.Text = CurrQuestion.Text; //ask the question
+
+                //determine type and display accordingly. Fill in with pre-existing answer if user has already given one
                 if (CurrQuestion.Type == QuestionType.Text)
                 {
                     DisplayedQuestion.QuestionType = QuestionType.Text;
-                    DisplayedQuestion.ShowQuestion();
                     if (CurrAnswer > -1)
                     {
                         DisplayedQuestion.AccessTextBox().Document.SetText(TextSetOptions.None, q.Answer[CurrAnswer].GivenAnswer.ToString()); //make sure this works
                     }
-
-                    // QuizTotalPoints.Text = $"{q.CurrentQuiz[q.CurrentQuestionNum].Answer}";
                 }
                 else if (CurrQuestion.Type == QuestionType.Options)
                 {
                     //enable Options question structure
                     DisplayedQuestion.QuestionType = QuestionType.Options;
-               
-                    //populate the list 
+                    //CurrQuestion.ToQuestion().CheckAnswer()  //inside checkanswer i put the GivenAnswer
+
                     var OptionList = (CurrQuestion.ToQuestion() as OptionsQuestion).Options;
 
-                    var Selections = CurrAnswer == -1?new List<string>():q.Answer[CurrAnswer].GivenAnswer as List<string>;
+                    var Selections = CurrAnswer == -1?new List<string>(): (List<string>) q.Answer[CurrAnswer].GivenAnswer;
                     var i = 0;
+
+                    DisplayedQuestion.AccessList().ItemsSource = OptionList;
+
                     foreach (var item in OptionList)
-                    {
-                        
-                        DisplayedQuestion.AccessList().Items.Add(item);
+                    {                                    
                         if (Selections.Contains(item)) //given answer here should be a list of selected items
                         {
-                           DisplayedQuestion.AccessList().SelectedItems.Insert(i++, item);
+                            DisplayedQuestion.AccessList().SelectedItems.Insert(i++, item);
                         }
-                    }
-
-                    //foreach (var selection in (q.Answer[CurrAnswer].GivenAnswer as OptionsQuestion)
-                    //{
-
-                    //}
-
-
-
-                    DisplayedQuestion.ShowQuestion();
-
-                    if (CurrAnswer > -1)
-                    {
-                        //DisplayedQuestion.AccessList().SelectedValue = q.Answer[q.CurrentQuestionNum].GivenAnswer; //make sure this works
-                        DisplayedQuestion.AccessList().SelectedValue = 1; //make sure this works
-
                     }
                 }
                 else if (CurrQuestion.Type == QuestionType.TrueFalse)
                 {
                     //enable True/False question structure
                     DisplayedQuestion.QuestionType = QuestionType.TrueFalse;
-                    DisplayedQuestion.ShowQuestion();
-                   // var TrueFalseAnswer = (CurrQuestion.ToQuestion() as OptionsQuestion).CheckAnswer();
-
+                    if (CurrAnswer > -1)
+                    {
+                        if ((bool) q.Answer[CurrAnswer].GivenAnswer)
+                        {
+                            DisplayedQuestion.GetTrueRadioButton().IsChecked = true;
+                        }
+                        else if ((bool) q.Answer[CurrAnswer].GivenAnswer == false)
+                        {
+                            DisplayedQuestion.GetFalseRadioButton().IsChecked = true;
+                        }
+                    }
                 }
-
-                //because of the below code i can remove these checks anwhere else
+                DisplayedQuestion.ShowQuestion();
+                //Handle button states
                 if (q.IsFirstQuestion)
                     Navbar.HasBack = false;
                 if (q.IsLastQuestion())
@@ -138,25 +121,33 @@ namespace Questions
         {
             //need to make dialog box confirm that you are canceling the entire quiz
             MessageDialog md = new MessageDialog("Are you sure you want to leave?");
+            md.Commands.Add(new UICommand(
+                "Exit",
+                new UICommandInvokedHandler(this.ExitFunc)));
+            md.Commands.Add(new UICommand(
+                "Close",
+                new UICommandInvokedHandler(this.DoNothing))); //close the dialog
             md.ShowAsync();
+        }
+
+        public void DoNothing(IUICommand command)
+        {
+            //Do nothing and just close the MessageDialog
+        }
+
+        public void ExitFunc(IUICommand command)
+        {
             this.Frame.Navigate(typeof(MainPage));
         }
 
         private void Navbar_OnNext(object sender, EventArgs e)
         {
             AppendAnswer();
-            if (!q.IsLastQuestion())
-            {
-                q.NextQuestion(); //q.CurrentQuestionNum += 1;
-                this.Frame.Navigate(typeof(QuestionPage), q);
-            }
-            else
-            {
-                Navbar.HasNext = false;
-                Navbar.HasFinish = true;
-            }
+            q.NextQuestion(); //q.CurrentQuestionNum += 1;
+            this.Frame.Navigate(typeof(QuestionPage), q);
         }
 
+        //record all given answers for tracking back and forth as well as calculating 
         private void AppendAnswer() //remember to call on finish
         {
             Answer newAnswer = new Answer();
@@ -169,15 +160,14 @@ namespace Questions
             }
             else if (newAnswer.QuestionType == QuestionType.Options)
             {
-                //var temptest = DisplayedQuestion.AccessList().SelectedItems.ToList();
-                //Debug.WriteLine(temptest);
-                newAnswer.GivenAnswer = DisplayedQuestion.AccessList().SelectedItems.ToList();
+                newAnswer.GivenAnswer = DisplayedQuestion.AccessList().SelectedItems.Select(s => s.ToString()).ToList();
             }
             else if (newAnswer.QuestionType == QuestionType.TrueFalse)
             {
                 newAnswer.GivenAnswer = DisplayedQuestion.GetTrueFalseAnswer(); //asumes false by default
             }
 
+            //this ensures i dont break the list and only add to it when there is a new question
             if (q.CurrentQuestionNum >= q.Answer.Count)
             {
                 q.Answer.Add(newAnswer);
@@ -186,6 +176,12 @@ namespace Questions
             {
                 q.Answer[q.CurrentQuestionNum] = newAnswer;
             }
+        }
+
+        private void Navbar_OnFinish(object sender, EventArgs e)
+        {
+            AppendAnswer();
+            this.Frame.Navigate(typeof(ResultsPage), q);
         }
     }
 }

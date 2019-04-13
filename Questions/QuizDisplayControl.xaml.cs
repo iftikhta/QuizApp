@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Devices.Radios;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -42,9 +43,6 @@ namespace Questions
             TrueFalseQuestion.Visibility = OptionsQuestion.Visibility = TextQuestion.Visibility = Visibility.Collapsed;
         }
 
-        //create method that updates the contents of the list question
-
-        //create methods that allows for check the content in answer, refactor later
         public string AccessTextInput()
         {
             return TextGivenAnswer.DataContext.ToString();
@@ -55,12 +53,24 @@ namespace Questions
             return TextGivenAnswer;
         }
 
+        public RadioButton GetSelectedRadioButton()
+        {
+            var SelectedRadio = True.IsChecked == true ? True : False;
+            return SelectedRadio;
+        }
+
+        public RadioButton GetTrueRadioButton()
+        {
+            return True;
+        }
+        public RadioButton GetFalseRadioButton()
+        {
+            return False;
+        }
+
         public bool GetTrueFalseAnswer() // will default to false if nothing is checked, may want to alter behaviour
         {
-            if (True.IsChecked == true)
-                return true;
-            else
-                return false;
+            return True.IsChecked ?? false;
         }
         
 
