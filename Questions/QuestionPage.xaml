@@ -15,7 +15,7 @@
           
 
             <StackPanel MinWidth="400" HorizontalAlignment="Left"  VerticalAlignment="Top" >
-                <TextBlock Margin="0,25,0,0" x:Name="QuestionDescription"  FontSize="20" HorizontalAlignment="Left" Text="{}{Question Description}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+                <TextBlock Margin="0,26,0,0" x:Name="QuestionDescription"  FontSize="20" HorizontalAlignment="Left" Text="{}{Question Description}" TextWrapping="NoWrap" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
                 <local:QuizDisplayControl x:Name="DisplayedQuestion"></local:QuizDisplayControl>
             </StackPanel>
 
